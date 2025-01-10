@@ -1,8 +1,11 @@
 #include "Gameplay/GameplayService.h"
 #include "Gameplay/GameplayController.h"
+#include "Gameplay/StickCollection/StickCollectionController.h"
+#include <random>
 
 namespace Gameplay
 {
+	using namespace Collection;
 	GameplayService::GameplayService()
 	{
 		gameplayController = new GameplayController();
@@ -19,6 +22,10 @@ namespace Gameplay
 	{
 		gameplayController->Initialize();
 		collectionController->Initialize();
+
+		InitializeRandomSpeed();
+
+
 	}
 
 	void GameplayService::Update()
@@ -40,10 +47,18 @@ namespace Gameplay
 	}
 	void GameplayService::SearchElement(Collection::SearchType searchType)
 	{
-		//collectionController->searchElement();
+		collectionController->searchElement(searchType);
 	}
 	int GameplayService::GetNumberOfSticks()
 	{
 		return collectionController->GetNumberOfSticks();
+	}
+
+	
+
+	void GameplayService::InitializeRandomSpeed()
+	{
+		std::srand(static_cast<unsigned int>(std::time(nullptr)));
+	
 	}
 }

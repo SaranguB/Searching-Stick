@@ -16,6 +16,8 @@ namespace Gameplay
 		GameplayController* gameplayController;
 		StickCollectionController* collectionController;
 
+		void InitializeRandomSpeed();
+
 	public:
 		GameplayService();
 		~GameplayService();
@@ -31,5 +33,10 @@ namespace Gameplay
 		Collection::SearchType GetCurrentSeacrhType();
 
 		int GetNumberOfSticks();
+
+		
+		
+
+		
 	};
 }
