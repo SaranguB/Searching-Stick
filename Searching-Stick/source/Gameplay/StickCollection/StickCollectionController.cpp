@@ -183,7 +183,7 @@ namespace Gameplay
 			return numberOfArrayAccess;
 		}
 
-		int StickCollectionController::GetDelayMillieSecond()
+		int StickCollectionController::GetDelayMilliseconds()
 		{
 			return currentOperationDelay;
 		}

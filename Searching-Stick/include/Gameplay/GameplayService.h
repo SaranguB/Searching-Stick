@@ -1,6 +1,8 @@
 #pragma once
 #include "Gameplay/StickCollection/StickCollectionModel.h"
 #include "Gameplay/StickCollection/StickCollectionController.h"
+#include <SFML/Graphics.hpp>
+
 
 
 namespace Gameplay
@@ -30,9 +32,16 @@ namespace Gameplay
 
 		void SearchElement(Collection::SearchType searchType);
 
-		Collection::SearchType GetCurrentSeacrhType();
+		Collection::SearchType GetCurrentSearchType();
 
 		int GetNumberOfSticks();
+
+		int GetNumberOfComparisons();
+		int GetNumberOfArrayAccess();
+
+		int GetDelayMilliseconds();
+
+		sf::String GetTimeComplexity();
 
 		
 		

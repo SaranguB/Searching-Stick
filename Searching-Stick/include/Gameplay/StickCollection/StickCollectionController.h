@@ -1,5 +1,5 @@
 #pragma once
-
+#include <SFML/Graphics.hpp>
 #include <vector>
 #include <thread>
 
@@ -69,7 +69,7 @@ namespace Gameplay
 			int GetNumberOfComparisons();
 			int GetNumberOfArrayAccess();
 
-			int GetDelayMillieSecond();
+			int GetDelayMilliseconds();
 
 			sf::String GetTimeComplexity();
 

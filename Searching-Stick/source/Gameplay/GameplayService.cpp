@@ -49,9 +49,33 @@ namespace Gameplay
 	{
 		collectionController->searchElement(searchType);
 	}
+	Collection::SearchType GameplayService::GetCurrentSearchType()
+	{
+		return collectionController->GetSearchType();
+	}
 	int GameplayService::GetNumberOfSticks()
 	{
 		return collectionController->GetNumberOfSticks();
+	}
+
+	int GameplayService::GetNumberOfComparisons()
+	{
+		return collectionController->GetNumberOfComparisons();
+	}
+
+	int GameplayService::GetNumberOfArrayAccess()
+	{
+		return collectionController->GetNumberOfArrayAccess();
+	}
+
+	int GameplayService::GetDelayMilliseconds()
+	{
+		return collectionController->GetDelayMilliseconds();
+	}
+
+	sf::String GameplayService::GetTimeComplexity()
+	{
+		return collectionController->GetTimeComplexity();
 	}
 
 	
