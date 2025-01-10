@@ -41,7 +41,7 @@ namespace Gameplay
 			void Reset();
 
 			SearchType GetSearchType();
-			int GetNumberOfElements();
+			int GetNumberOfSticks();
 
 
 			void searchElement(SearchType search_type);

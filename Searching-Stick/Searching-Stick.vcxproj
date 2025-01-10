@@ -133,6 +133,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\Gameplay\StickCollection\StickCollectionView.cpp" />
+    <ClCompile Include="source\Gameplay\StickCollection\StickCollectionModel.cpp" />
+    <ClCompile Include="source\Gameplay\StickCollection\StickCollectionController.cpp" />
     <ClCompile Include="source\Gameplay\GameplayController.cpp" />
     <ClCompile Include="source\Gameplay\GameplayView.cpp" />
     <ClCompile Include="main.cpp" />
