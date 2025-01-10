@@ -25,6 +25,8 @@ namespace Gameplay
 
 			std::thread searchThread;
 
+			sf::String timeComplexity;
+
 			int numberOfComparisons;
 			int numberOfArrayAccess;
 
@@ -69,6 +71,7 @@ namespace Gameplay
 
 			int GetDelayMillieSecond();
 
+			sf::String GetTimeComplexity();
 
 		};
 	}
