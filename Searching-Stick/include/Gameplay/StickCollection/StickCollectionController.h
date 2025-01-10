@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <thread>
 
 namespace Gameplay
 {
@@ -20,6 +21,9 @@ namespace Gameplay
 			std::vector<Stick*> sticks;
 			Collection::SearchType search_type;
 			Stick* stickToSearch;
+			int currentOperationDelay;
+
+			std::thread searchThread;
 
 			int numberOfComparisons;
 			int numberOfArrayAccess;
@@ -38,6 +42,9 @@ namespace Gameplay
 			void ProcessLinearSearch();
 
 			void ResetVariables();
+
+			void JoinThreads();
+			void ProcessSearchThreadState();
 
 
 		public:
@@ -60,6 +67,7 @@ namespace Gameplay
 			int GetNumberOfComparisons();
 			int GetNumberOfArrayAccess();
 
+			int GetDelayMillieSecond();
 
 
 		};
