@@ -170,6 +170,14 @@ namespace Gameplay
 				timeComplexity = "O(n)";
 				searchThread = std::thread(&StickCollectionController::ProcessLinearSearch, this);
 				break;
+
+			case SearchType::BINARY_SEARCH:
+				SortElements();
+				currentOperationDelay = collection_model->binary_search_delay;
+				timeComplexity = "O(log n)";
+				searchThread = std::thread(&StickCollectionController::ProcessBinarySearch, this);
+				break;
+
 			}
 		}
 
@@ -237,6 +245,48 @@ namespace Gameplay
 			}
 		}
 
+		void StickCollectionController::ProcessBinarySearch()
+		{
+
+			int left = 0;
+			int right = sticks.size();
+
+			Sound::SoundService* sound_service = Global::ServiceLocator::getInstance()->getSoundService();
+
+			while (left < right)
+			{
+
+				int mid = left + (right - left) / 2;
+				numberOfArrayAccess += 2;
+				numberOfComparisons++;
+
+				sound_service->playSound(Sound::SoundType::COMPARE_SFX);
+
+				if (sticks[mid] == stickToSearch)
+				{
+					sticks[mid]->stickView->setFillColor(collection_model->found_element_color);
+					stickToSearch = nullptr;
+					return;
+				}
+
+				sticks[mid]->stickView->setFillColor(collection_model->processing_element_color);
+
+				std::this_thread::sleep_for(std::chrono::milliseconds(currentOperationDelay));
+
+				sticks[mid]->stickView->setFillColor(collection_model->element_color);
+
+				numberOfArrayAccess++;
+
+				if (sticks[mid]->data <= stickToSearch->data)left = mid;
+
+				else right = mid;
+
+			}
+
+
+
+		}
+
 		void StickCollectionController::ResetVariables()
 		{
 			numberOfComparisons = 0;
@@ -250,11 +300,24 @@ namespace Gameplay
 				JoinThreads();
 			}
 		}
+
+		void StickCollectionController::SortElements()
+		{
+			std::sort(sticks.begin(), sticks.end(), [this](const Stick* a, const Stick* b)
+				{ return CompareElementsByData(a, b); });
+
+			updateSticksPosition();
+		}
+
+		bool StickCollectionController::CompareElementsByData(const Stick* a, const Stick* b) const
+		{
+			return a->data < b->data;
+		}
 		void StickCollectionController::JoinThreads()
 		{
 			searchThread.join();
 		}
 
-		
+
 	}
 }
